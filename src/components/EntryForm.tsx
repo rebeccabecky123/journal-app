@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import {aoth}
-
+import { auth } from '@/lib/firebase'; 
 
 export default function EntryForm({ onAdd }: { onAdd: () => void }) {
   const [title, setTitle] = useState('');
@@ -14,7 +13,11 @@ export default function EntryForm({ onAdd }: { onAdd: () => void }) {
     setLoading(true);
 
     const user = auth.currentUser;
-    if (!user) return;
+    if (!user) {
+      alert('You must be logged in to add an entry.');
+      setLoading(false);
+      return;
+    }
 
     const token = await user.getIdToken();
 
