@@ -2,7 +2,8 @@
 
 import { useState, useEffect, FormEvent, ChangeEvent } from 'react'
 import Head from 'next/head'
-import { auth, provider } from '@/app/component/lib/auth'
+import { auth, provider } from '@/lib/auth';
+
 
 
 

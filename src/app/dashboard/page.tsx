@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const PersonalJournalLanding = () => {
   return (
@@ -10,9 +11,12 @@ const PersonalJournalLanding = () => {
             <div className="text-2xl font-semibold text-gray-800">
               Personal Journal
             </div>
-            <button className="bg-gray-600 hover:bg-gray-700 text-white px-5 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            <Link href="/auth/signin">
+             <button className="bg-gray-600 hover:bg-gray-700 text-white px-5 py-2 rounded-md text-sm font-medium transition-colors duration-200">
               Sign In
             </button>
+            </Link>
+           
           </div>
         </nav>
       </header>
@@ -80,9 +84,11 @@ const PersonalJournalLanding = () => {
      
       <section className="bg-white py-16">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <button className="bg-gray-700 hover:bg-gray-800 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-200 hover:-translate-y-1 shadow-lg hover:shadow-xl">
-            Start Journaling
-          </button>
+          <Link href="/auth/signin">
+  <button className="bg-gray-700 hover:bg-gray-800 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-200 hover:-translate-y-1 shadow-lg hover:shadow-xl">
+    Start Journaling
+  </button>
+</Link>
         </div>
       </section>
 

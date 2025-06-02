@@ -26,12 +26,11 @@ export default function Home() {
           >
             Get Started
         </button>
-          <link   className="bg-gray-300 rounded py-3 px-8 hover:bg-white text-black border border-black" 
+        
+          <button      className="bg-gray-300 rounded py-3 px-8 hover:bg-white text-black border border-black" 
           onClick={() => router.push('/dashboard')} >
-         
-            Learn More
-          
-          </link>
+               Learn More
+          </button>
         </div>
       </main>
 
