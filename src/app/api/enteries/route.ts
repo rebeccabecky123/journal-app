@@ -1,7 +1,5 @@
-// app/api/auth/[...nextauth]/route.ts
 import NextAuth from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
-import { authOptions } from 'components/lib/authOptions';
+import { authOptions } from '../../../lib/authOptions';
 
 const handler = NextAuth(authOptions);
 
