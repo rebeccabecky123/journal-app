@@ -1,7 +1,9 @@
+// src/lib/firebase.ts (Client-side Firebase config)
 
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';  
 
 const firebaseConfig = {
   apiKey: 'AIzaSyB9VOma-LhF8osjEbqaxOvuxfjmmE7y3T0',
@@ -15,10 +17,11 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-
 if (typeof window !== 'undefined') {
   getAnalytics(app);
 }
 
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
+export const db = getFirestore(app);
+

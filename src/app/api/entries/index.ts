@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { db } from '../../../../components/lib/firebase';
-import { verifyUser } from '../../../../components/lib/auth';
+import { db } from '@/lib/firebase'; 
+import { verifyUser } from '@/lib/firebaseAdmin';
 import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -23,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
       return res.status(201).json({ id: docRef.id });
     } catch (error) {
-      return res.status(500).json({ error: 'Failed to create entry' });
+      return res.status(500).json({ error: 'Failed to create entry', details: error });
     }
   }
 
@@ -37,7 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }));
       return res.status(200).json(entries);
     } catch (error) {
-      return res.status(500).json({ error: 'Failed to fetch entries' });
+      return res.status(500).json({ error: 'Failed to fetch entries', details: error });
     }
   }
 
