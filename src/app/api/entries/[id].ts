@@ -1,10 +1,16 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { adminAuth, adminDB } from 'components/lib/firebaseAdmin';
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+import { NextRequest, NextResponse } from 'next/server';
+import { adminAuth, adminDB } from '@/lib/firebaseAdmin';
+
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   const token = req.headers.get('authorization')?.split('Bearer ')[1];
 
-  if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!token) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
 
   try {
     const decoded = await adminAuth.verifyIdToken(token);
@@ -18,6 +24,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
     await docRef.delete();
     return NextResponse.json({ success: true });
   } catch (error) {
+    console.error('Failed to delete entry:', error); 
     return NextResponse.json({ error: 'Failed to delete entry' }, { status: 500 });
   }
 }
