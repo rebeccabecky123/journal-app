@@ -1,10 +1,18 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { auth } from 'firebase/auth';
+import { auth } from '@/lib/firebaseClient'; // ✅ CORRECT PATH (adjust if needed)
+
+type Entry = {
+  id: string;
+  title: string;
+  body: string;
+  createdAt: string;
+  userId: string;
+};
 
 export default function EntryList() {
-  const [entries, setEntries] = useState<any[]>([]);
+  const [entries, setEntries] = useState<Entry[]>([]);
 
   const fetchEntries = async () => {
     const user = auth.currentUser;
@@ -18,7 +26,7 @@ export default function EntryList() {
       },
     });
 
-    const data = await res.json();
+    const data: Entry[] = await res.json();
     setEntries(data);
   };
 
@@ -55,7 +63,9 @@ export default function EntryList() {
             </button>
           </div>
           <p>{entry.body}</p>
-          <p className="text-sm text-gray-500">{new Date(entry.createdAt).toLocaleString()}</p>
+          <p className="text-sm text-gray-500">
+            {new Date(entry.createdAt).toLocaleString()}
+          </p>
         </div>
       ))}
     </div>
